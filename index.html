@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+
+    <title>Time Left in This Year</title>
+    <style>
+        
+        body{
+            text-align: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            padding: 40px 20px;
+            margin: 0;
+        }
+        
+        #counter{
+            background: #2a2a2a;
+            padding: 30px;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .box{
+            display: inline-block;
+            padding: 20px 15px;
+            border-radius: 8px;
+            min-width: 70px;
+            height: 70px;
+            background: #2d2d2d;
+            border: 1px solid #444;
+            margin: 0 8px;
+            transition: transform 0.2s;
+        }
+        
+        .box:hover{
+            transform: translateY(-2px);
+            border-color: #666;
+        }
+      
+        h2{
+            display: inline-block;
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        h3{
+            text-align: center;
+            display: block;
+            margin-top: 25px;
+            font-size: 18px;
+            font-weight: 400;
+            color: #a0a0a0;
+            letter-spacing: 0.5px;
+        }
+        
+        .small{
+            font-size: 12px;
+            font-weight: 400;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <div id="counter">
+
+        <h2 class="box" id="days"></h2>
+        <h2 class="box" id="hours"></h2>
+        <h2 class="box" id="minutes"></h2>
+        <h2 class="box" id="seconds"></h2>
+        <h3>
+            Time Left Until End of 2026
+        </h3>
+    </div>
+
+
+
+<script>
+    function CountDownTimer() {
+        left_days = document.getElementById("days");
+        left_hours = document.getElementById("hours");
+        left_minutes = document.getElementById("minutes");
+        left_seconds = document.getElementById("seconds");
+    }
+    
+    function showRemaining() {
+        now = new Date();
+        
+        // Calculate end of 2026 (December 31, 2026, 11:59:59 PM)
+        endOfYear = new Date(2026, 11, 31, 23, 59, 59);
+        
+        // Calculate difference in milliseconds
+        diff = endOfYear - now;
+        
+        // Convert to days, hours, minutes, seconds
+        days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        left_days.innerHTML = days + "<br> <span class=\"small\"> days </span>";
+        left_hours.innerHTML = hours + "<br> <span class=\"small\"> hours</span>";
+        left_minutes.innerHTML = minutes + "<br> <span class=\"small\">mins</span>";
+        left_seconds.innerHTML = seconds + "<br> <span class=\"small\">secs</span>";
+    }
+
+    timer = setInterval(showRemaining, 1000);
+    CountDownTimer();
+</script>
+</body>
+</html>
